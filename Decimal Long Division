@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+
+typedef unsigned int uint;
+void f(uint a, uint b, uint* q, uint* r) {
+	*q = 0;
+	*r = 0;
+	int i;
+	for (i = 31; i >= 0; i--) {
+		*r = (*r << 1) + ((a >> i) & 1);
+		if (*r >= b) {
+			*r = *r - b;
+			*q = *q + (1 << i);
+		}
+	}
+}
+
+int main() {
+	uint a = 2018;
+	uint b = 612;
+	uint q, r;
+	f(a, b, &q, &r);
+	printf("%d = %d * %d + %d\n", a, b, q, r);
+	return 0;
+}
