@@ -1,0 +1,10 @@
+#include <iostream>
+
+using namespace std;
+
+int WH(unsigned char v) {
+	v = v - ((v >> 1) & 0x55);
+	v = (v & 0x33) + ((v >> 2) & 0x33);
+	int wt = (v + (v >> 4)) & 0x0f;
+	return wt;
+}
